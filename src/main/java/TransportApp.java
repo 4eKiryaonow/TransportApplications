@@ -14,12 +14,7 @@ public class TransportApp {
 
 
 
-    public static void main(String[] args) throws SQLException {
-
-
-
-
-
+    public static void main(String[] args){
 
 
 
