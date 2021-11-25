@@ -71,13 +71,11 @@ public class Transport extends BaseModel {
 
     @Override
     public String toString() {
-        return "Transport{" +
-                "id=" + id +
+        return "id=" + id +
                 ", Type=" + Type +
                 ", TransportVIN='" + TransportVIN + '\'' +
                 ", TransportNumber='" + TransportNumber + '\'' +
-                ", InRepair=" + InRepair +
-                '}';
+                ", InRepair=" + InRepair;
     }
 }
 

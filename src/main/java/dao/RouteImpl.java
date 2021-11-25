@@ -8,6 +8,7 @@ import domain.TransportType;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class RouteImpl extends ConnectDB implements RouteDAO {
 
@@ -31,11 +32,10 @@ public class RouteImpl extends ConnectDB implements RouteDAO {
                 Route route = new Route();
                 route.setId(resultSet.getLong("route_id"));
                 route.setRouteNumber(resultSet.getString("route_number"));
-                route.setTypeTransport(TransportType.valueOf(resultSet.getString("route_transporttype")));
+                route.setTypeTransport(TransportType.valueOf(resultSet.getString("route_transporttype").toUpperCase(Locale.ROOT)));
                 route.setDistance(resultSet.getInt(resultSet.getInt("route_distance")));
                 route.setNumOfStations(resultSet.getInt("route_stationnum"));
-                route.setTransport(resultSet.getInt("transport_id"));
-
+                route.setTransport(Long.valueOf(resultSet.getString("transport_id")));
 
                 routeList.add(route);
 
@@ -61,8 +61,7 @@ public class RouteImpl extends ConnectDB implements RouteDAO {
 
         PreparedStatement preparedStatement = null;
 
-        String sql = "SELECT route_id, route_number, route_transporttype, route_distance, route_stationnum, transport_id FROM route" +
-                "WHERE route_id=?";
+        String sql = "SELECT route_id, route_number, route_transporttype, route_distance, route_stationnum, transport_id FROM route WHERE route_id=?";
 
         Route route = new Route();
 
@@ -102,10 +101,7 @@ public class RouteImpl extends ConnectDB implements RouteDAO {
 
         PreparedStatement preparedStatement = null;
 
-        String sql = "SELECT route_id, route_number, route_transpporttype, route_distance, route_stationnum," +
-                "transport_id FROM route" +
-                "WHERE transport_id=?" +
-                " ORDER BY route_distance DESC, route_stationnum";
+        String sql = "SELECT route_id, route_number, route_transpporttype, route_distance, route_stationnum, transport_id FROM route WHERE transport_id=? ORDER BY route_distance DESC, route_stationnum";
 
         List<Route> routeList = new ArrayList<>();
 
@@ -120,8 +116,9 @@ public class RouteImpl extends ConnectDB implements RouteDAO {
                 Route route = new Route();
                 route.setId(resultSet.getLong("route_id"));
                 route.setRouteNumber(resultSet.getString("route_number"));
-                route.setTypeTransport(TransportType.valueOf(resultSet.getString("route_transporttype")));
+                route.setTypeTransport(TransportType.valueOf(resultSet.getString("route_transporttype").toUpperCase(Locale.ROOT)));
                 route.setNumOfStations(resultSet.getInt("route_stationnum"));
+                route.setDistance(resultSet.getInt("route_distance"));
                 route.setTransport(resultSet.getLong("transport_id"));
 
                 routeList.add(route);

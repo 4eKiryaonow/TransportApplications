@@ -7,8 +7,8 @@ public class Route extends BaseModel{
 
     private String RouteNumber; // Номер маршрута
     private TransportType Type; // Тип транспорта
-    private int Distance; // расстояние маршрута
-    private int NumOfStations; //количество остановок
+    private Integer Distance; // расстояние маршрута
+    private Integer NumOfStations; //количество остановок
     private long Transport; // назначенный транспорт
 
     public Route() {}

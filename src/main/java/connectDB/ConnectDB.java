@@ -16,7 +16,7 @@ public class ConnectDB {
         Connection connection = null;
 
         try {
-
+            System.out.println("Connecting to DataBase Transport....");
             Class.forName(DB_DRIVER);
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             System.out.println("Connection is succesfull!");
